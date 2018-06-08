@@ -1,0 +1,48 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>事件处理</title>
+<meta charset="utf-8" />
+
+</head>
+<body>
+ 	<form>
+		姓名:<input name="username"/><br>
+		密码:<input type="password" name="pwd"/><br>
+    爱好:<input type="checkbox" name="favs" value="running"/>跑步
+          <input type="checkbox" name="favs" value="swimming"/>游泳
+          <input type="checkbox" name="favs" value="basketball"/>篮球
+          <br>
+		<input type="submit"/>
+	</form>
+  <script>
+    function search2Obj(){
+      var params={};
+      if(location.search!==""){
+        //选取location.search中1位置到结尾的所有字符保存在变量search中
+        var search=location.search.slice(1);
+        //将search按&切割，保存在数组arr中
+        var arr=search.split("&");
+        //遍历arr中每个子字符串
+        for(var str of arr){
+          //将当前字符串按=切割
+          //第一部分保存为key
+          //第二部分保存为value
+          var [key,value]=str.split("=");
+          //如果params中key位置的元素等于undefined
+          if(params[key]===undefined){
+            //为params添加新属性，名为key，值为value
+            params[key]=value;
+          }else{//否则
+            //将params中key位置的值，和value变量拼接到values数组中，并将values数组赋值回params中key位置
+            params[key]=
+              [].concat(params[key],value);
+          }
+        }
+      }
+      return params;
+    }
+    console.dir(search2Obj());
+  </script>
+</body>
+</html>

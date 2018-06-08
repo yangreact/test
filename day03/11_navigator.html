@@ -1,0 +1,46 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>navigator对象常用属性</title>
+<meta charset="utf-8" />
+</head>
+<body>
+	<script>
+	  if(navigator.cookieEnabled)
+      document.write("已启用cookie，请妥善保存个人信息!<br>");
+    else
+      document.write("cookie已禁用，无法记住密码!<br>");
+    if(navigator.plugins["Shockwave Flash"]!==undefined)
+      document.write("已安装flash插件，可正常播放!<br>")
+    else
+      document.write("未安装flash插件，<a href='#'>点此下载安装</a><br>")
+document.write(navigator.userAgent+"<br>");
+var browser="",version=0,ua=navigator.userAgent;
+if(ua.indexOf("MSIE")!=-1)
+  browser="IE";
+else if(ua.indexOf("Trident")!=-1){
+  browser="IE"; browser
+  version=11;
+}
+else if(ua.indexOf("Firefox")!=-1)
+  browser="Firefox";
+else if(ua.indexOf("OPR")!=-1)
+  browser="Opera";
+else if(ua.indexOf("Chrome")!=-1)
+  browser="Chrome";
+else if(ua.indexOf("Safari")!=-1)
+  browser="Safari";
+
+  document.write(browser+"<br>");
+if(version==0){
+  if(browser=="Opera"){
+    var i=ua.indexOf("OPR")+3+1; 
+  }else{
+    var i=ua.indexOf(browser)+browser.length+1;
+  }
+  version=parseFloat(ua.slice(i,i+3));
+}
+  document.write(version+"<br>");
+  </script>
+</body>
+</html>

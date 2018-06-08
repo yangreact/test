@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    #slider{
+      width:200px; height:150px;
+      position:relative;
+      border:1px solid #555;
+    }
+    #slider>img{/*Step1: 定义起始样式*/
+      position:absolute; top:0; left:0;
+      opacity:0;
+      /*Step2: 在起始样式中添加transition*/
+      transition:all .5s linear;
+    }
+    #slider>img.show{/*Step3:定义目标样式*/
+      opacity:1;  z-index:10;
+    }
+  </style>
+</head>
+<body>
+<div id="slider">
+  <img src="images/1.jpg" class="show" alt="花团锦簇"/>
+  <img src="images/2.jpg" alt="大漠戈壁"/>
+  <img src="images/3.jpg" alt="万紫千红"/>
+  <img src="images/4.jpg" alt="海洋生物"/>
+</div>
+<script>
+  var btns=
+    document.querySelectorAll("#slider>img");
+  for(var btn of btns)
+    btn.onclick=e=>alert(e.target.alt)
+
+  function task(){
+    //查找id为slider下的class为show的img
+    var img=
+      document.querySelector("#slider>.show");
+    img.className="";//清除img的class
+    //如果img的下一个元素不为null
+    if(img.nextElementSibling!=null)
+      //设置img的下一个兄弟元素的class为show
+      img.nextElementSibling.className="show";
+    else//否则
+      //设置id为slider下的第一个子元素的class为show
+      document.querySelector(
+        "#slider>:first-child"
+      ).className="show";
+  }
+  var timer=setInterval(task,3000);
+  //为id为slider的div绑定鼠标进入(mouseover)事件
+  var slider=document.getElementById("slider")
+  slider.onmouseover=()=>{
+    clearInterval(timer);//停止定时器!
+    timer=null;//清空timer
+  }
+
+  //为id为slider的div绑定鼠标移出(mouesout)事件
+  slider.onmouseout=()=>{
+    //启动定时器,每隔3秒，自动调用一次task
+    timer=setInterval(task,3000);
+  }
+</script>
+
+
+</body>
+</html>

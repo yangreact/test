@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div onload="initSeats()">
+  <div id="seats0" style="width:100px;height:100px;background: red;float:left;margin-left: 10px"></div>
+  <div id="seats1" style="width:100px;height:100px;background: red;float:left;margin-left: 10px"></div>
+  <div id="seats2" style="width:100px;height:100px;background: red;float:left;margin-left: 10px"></div>
+  <div id="seats3" style="width:100px;height:100px;background: red;float:left;margin-left: 10px"></div>
+  <div id="seats4" style="width:100px;height:100px;background: red;float:left;margin-left: 10px"></div>
+  <div id="seats5" style="width:100px;height:100px;background: red;float:left;margin-left: 10px"></div>
+  <div id="seats6" style="width:100px;height:100px;background: red;float:left;margin-left: 10px"></div>
+  <div id="seats7" style="width:100px;height:100px;background: red;float:left;margin-left: 10px"></div>
+  <div id="seats8" style="width:100px;height:100px;background: red;float:left;margin-left:10px"></div>
+  <button onclick="findSeats()">开始选座位</button>
+</div>
+</body>
+<script>
+  // var count = prompt("请输入数字","10");
+  // if(count > 0){
+  //   for(var x = count;x > 0;x--){
+  //     alert("还有"+x+"秒开始");
+  //     // alert("马上开始");
+  //     if(x == 1){
+  //       alert("还有"+x+"秒开始" );
+  //     }
+  //   }
+  //   alert("请输入一个数字");
+  var seats = [false,true,false,true,true,true,false,false,false];
+  // }else{
+  var selSeats = -1;
+  function initSeats() {
+    for (var i = 0; i < seats.length; i++) {
+      if (!seats[i]) {
+        document.getElementById("seats" + i).style.background = "green";
+      } else {
+        document.getElementById("seats" + i).style.background = "yellow";
+      }
+    }
+  }
+  initSeats();
+  function findSeats() {
+    if(selSeats >= 0){
+      selSeats = -1;
+      initSeats();
+    }
+    for(var i = 0;i<seats.length;i++){
+      if(seats[i]){
+        selSeats = (i+1);
+        document.getElementById("seats"+i).style.background = "green";
+        var accept = confirm("座位"+(i+1)+"您是否愿意选择");
+        if(accept){
+          seats[i] = false;
+          break;
+        }else {
+          selSeats = -1;
+          document.getElementById("seats"+i).style.background ="yellow";
+        }
+      }
+    }
+  }
+  // findSeats();
+</script>
+</html>

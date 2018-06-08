@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>窗口右下角消息弹出框</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="css/8.css"/>
+  
+ </head>
+ <body>
+  <div id="msg">
+	  <a>X</a>
+  </div>
+  <script>
+    //首先要在css中为msg添加transition属性
+    //window.onload在全部页面内容(html,css,js,图片)加载完成后才执行
+    window.onload=()=>{
+      msg.style.bottom="0px";
+    }
+    document.querySelector("#msg>a")
+       //发生事件:  event
+                 //   ↓
+    .onclick=function(e){
+      e.target.parentNode.style.bottom="-200px";
+      setTimeout(
+        ()=>msg.style.bottom="0px",5000+2000);
+    }
+  </script>
+ </body>
+</html>

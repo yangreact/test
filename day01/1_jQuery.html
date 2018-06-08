@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+</head>
+<body>
+  <h1>jQuery/$工厂函数</h1>
+  <button id="btn1" class="btn btn-danger">click me(0)</button>
+  <script src="js/jquery-1.11.3.js"></script>
+
+  <!-- <script
+  src="https://code.jquery.com/jquery-1.12.4.js"
+  integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+  crossorigin="anonymous"></script> -->
+
+  <script>
+    console.log(jQuery);//function
+    console.log(jQuery.fn);//原型对象:API
+    //2. 使用$工厂函数查询id为btn1的一个按钮，封装在jQuery对象中，并查看jQuery对象结构:
+    var $btn=$("#btn1");
+    //1. 输出jQuery工厂函数，jQuery类型的原型对象，并判断jQuery的原型对象是不是jQuery.fn
+    console.log(jQuery.prototype==jQuery.fn);
+    console.log($btn);
+    var arr = [1,4,23,5,33,99,11,3]
+    var arr = [1,4,23,5,33,99,11,3]
+    var arr1 = arr.splice(2,2,55);
+    Array.prototype.selectSort = function (){
+      var i,j;
+      for(var i =1;i<this.length;i++){
+        var maxIndex = 0;
+        for(j = 0;j<this.length -i;j++){
+          if(this[j] >this[maxIndex]){
+            maxIndex = j;
+          }
+        }
+        [this[this.length - i],this[maxIndex]] = [this[maxIndex],this[this.length - i]];
+      }
+    }
+
+
+    //3. 使用简化版API为$btn绑定单击事件:修改按钮的点击次数
+    (()=>{
+      var n=0;
+      //btn.addEventListener("click",e=>{...})
+      $btn.click(e=>{
+        $(e.target).html(`click me(${++n})`);
+        //.innerHTML=`click me(${++n})`
+      })
+    })()
+
+
+    //4. 使用$工厂函数包装e.target, 使用简化版API完成功能
+    console.log(arr);
+    arr.selectSort();
+    console.log(arr1);
+    console.log(arr);
+  </script>
+<div></div>
+</body>
+</html>
